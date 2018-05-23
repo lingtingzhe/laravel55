@@ -1,0 +1,2 @@
+Set ws = CreateObject("Wscript.Shell")   
+ws.run "cmd /c D:\phpStudy1\WWW\laravel\laravel55\laravel.schedule.bat",vbhide
