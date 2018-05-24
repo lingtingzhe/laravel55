@@ -51,6 +51,7 @@ Route::post('articles','ArticleController@store');
 Route::put('articles{id}','ArticleController@update');
 Route::delete('articles/{id}','ArticleController@delete');
 */
+
 Route::post('register','Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 
@@ -66,5 +67,19 @@ Route::group(['middleware'=>'auth:api'],function(){
     Route::put('articles{article}','ArticleController@update');
     Route::delete('articles/{article}','ArticleController@delete');
 
+});
+
+
+
+Route::get('/redirect',function(){
+
+    $query = http_build_query([
+        'client_id' => 4,
+        'redirect_url' => 'http://laravel55.com/auth/callback',
+        'response_type' => 'code',
+        'scope' => 'pWTIcgNEe2eo3UlC3wTSHjQSuHjh3dMIHadi56XJ',
+    ]);
+
+    return redirect("http://".$_SERVER['HTTP_HOST']."/oauth/authorize?".$query);
 });
 

@@ -15,8 +15,31 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+//Vue.component('example', require('./components/Example.vue'));
+import Hello from './components/Hello.vue'; // 引入Hello 组件
+
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue')
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue')
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue')
+);
+
+axios.get('/oauth/clients')
+    .then(response => {
+    console.log(response.data);
+});
+
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    render: h => h(Hello)
 });

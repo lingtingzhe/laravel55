@@ -85,3 +85,18 @@ Route::domain('{account}.myapp.com')->group(function(){
         /*  */
     });
 });
+
+
+
+//定义： API接口验证跳转
+Route::get('/auth/callback',function(Request $request){
+    if($request->get('code')){
+        return 'Login Success';
+    }else{
+        return 'Access Denied';
+    }
+});
+
+Route::get('vue',function(){
+    return view('vue');
+});
