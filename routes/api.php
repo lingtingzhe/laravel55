@@ -52,10 +52,11 @@ Route::put('articles{id}','ArticleController@update');
 Route::delete('articles/{id}','ArticleController@delete');
 */
 
+Route::get('/','IndexController@index');
 Route::post('register','Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 
-
+//对需要操作的内容，需要 验证登陆，成功之后才能登陆
 Route::group(['middleware'=>'auth:api'],function(){
 
     Route::post('logout','Auth\LoginController@logout');
