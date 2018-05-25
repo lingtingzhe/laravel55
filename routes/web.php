@@ -90,12 +90,47 @@ Route::domain('{account}.myapp.com')->group(function(){
 
 //定义： API接口验证跳转
 Route::get('/auth/callback',function(Request $request){
-    if($request->get('code')){
-        return 'Login Success';
-    }else{
-        return 'Access Denied';
-    }
+//    if($request->get('code')){
+//        return 'Login Success';
+//    }else{
+//        return 'Access Denied';
+//    }
+
+    $http = new GuzzleHttp\Client();
+
+    $response = $http->post('http://laravel55.com/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'authorization_code',
+            'client_id' => '4',  // your client id
+            'client_secret' => 'pWTIcgNEe2eo3UlC3wTSHjQSuHjh3dMIHadi56XJ',   // your client secret
+            'redirect_uri' => 'http://laravel55.com/auth/callback',
+            'code' => $request->code,
+        ],
+    ]);
+
+    return json_decode((string) $response->getBody(),true);
+
+
 });
+
+Route::get('/auth/password', function (Request $request){
+
+    $http = new \GuzzleHttp\Client();
+
+    $response = $http->post('http://laravel55.com/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'password',
+            'client_id' => '7',
+            'client_secret' => 'q3fylDTAshgLHWDjumQhZiOxopYaeEOeBAauoqJb',
+            'username' => 'sss@laravel.com',
+            'password' => 'sss',
+            'scope' => '',
+        ],
+    ]);
+
+    return json_decode((string)$response->getBody(), true);
+});
+
 
 Route::get('vue',function(){
     return view('vue');

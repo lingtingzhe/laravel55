@@ -30,7 +30,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/api';
-    protected $api_token;
+
     /**
      * Create a new controller instance.
      *
