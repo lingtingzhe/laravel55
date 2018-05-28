@@ -24,6 +24,9 @@
             "database/seeds",
             "database/factories"
         ],
+        "file":[
+            "app/Function/common.php"
+        ],
         "psr-4": {
             "App\\": "app/"
         }

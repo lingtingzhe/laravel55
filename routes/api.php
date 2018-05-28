@@ -71,7 +71,6 @@ Route::group(['middleware'=>'auth:api'],function(){
 });
 
 
-
 Route::get('/redirect',function(){
 
     $query = http_build_query([
@@ -84,3 +83,18 @@ Route::get('/redirect',function(){
     return redirect("http://".$_SERVER['HTTP_HOST']."/oauth/authorize?".$query);
 });
 
+/*
+ * api 模拟登陆注册接口
+ */
+Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
+    //Route::get('/','LoginController@login');
+//    Route::get('client','ClientController@getDataFromServer');
+    Route::get('client','ClienterController@getDataFromServer');
+
+    Route::get('register','RegisterController@register');
+
+    Route::get('login','LoginController@login');
+
+    //sort
+    Route::get('sort','RegisterController@sort');
+});
