@@ -8,9 +8,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use Request;
 use Illuminate\Support\Facades\Redis;
+use Request;
+//use Illuminate\Support\Facades\Redis;
 use App\Http\Controllers\Api\BaseApiController;
+
 
 
 class ClienterController extends BaseApiController
@@ -20,7 +22,7 @@ class ClienterController extends BaseApiController
     public function __construct($user = null)
     {
 
-        parent::__construct($user);
+        //parent::__construct($user);
         //$this->user = $this->UserIsLogin();
     }
 
@@ -43,7 +45,7 @@ class ClienterController extends BaseApiController
         dd($result);
     }
 
-    public function redis(Request $request){
+    public function FacedeRedis(Request $request){
         $data = [
             'user1' => [
                 'id' => '1',
@@ -58,21 +60,36 @@ class ClienterController extends BaseApiController
 //            ]
         ];
 
-        Redis::setFacadeApplication($data);
-        $result= Redis::getFacadeApplication();
 
-        foreach($result as $value){
-            $result = $value;
-        }
+
+
+//        Redis::setFacadeApplication($data);
+//        $result= Redis::getFacadeApplication();
+
+//        foreach($result as $value){
+//            $result = $value;
+//        }
         //Session('name',$result['name']);
-        $request->session()->set('name',$result['name']);
-        //dd($result);
 
     }
 
     public function UserIsLogin(Request $request){
         $userInfo = $request->session()->get();
         dd($userInfo);die;
+    }
+
+    public function redis(){
+
+        $redis = new \Redis();
+        //$connect = $redis->connect('127.0.0.1','6379');
+        $connect = Redis::connect('127.0.0.1','6379');
+        print_r($connect);die;
+        //$redis->set('name','1');
+
+        $result = $redis->get('name');
+        dd($result);
+
+
     }
 
 }

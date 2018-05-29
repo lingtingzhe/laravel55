@@ -98,4 +98,5 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
     //sort
     Route::get('sort','RegisterController@sort');
     Route::get('redis','ClienterController@redis');
+    Route::get('facederedis','ClienterController@FacedeRedis');
 });
