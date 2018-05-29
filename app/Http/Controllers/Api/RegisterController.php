@@ -27,7 +27,7 @@ class RegisterController extends BaseApiController
         $str = $this->arithmetic($timeStamp,$randomStr);
 
         if($str != $signature){
-            echo "-3333";
+            echo "-1";
             exit;
         }
 
@@ -39,9 +39,5 @@ class RegisterController extends BaseApiController
         echo json_encode($arr);
 
     }
-
-
-
-
 
 }
