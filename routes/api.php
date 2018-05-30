@@ -88,7 +88,7 @@ Route::get('/redirect',function(){
  */
 Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
     //Route::get('/','LoginController@login');
-//    Route::get('client','ClientController@getDataFromServer');
+    Route::get('token','TokenController@genToken');
     Route::get('client','ClienterController@getDataFromServer');
 
     Route::get('register','RegisterController@register');

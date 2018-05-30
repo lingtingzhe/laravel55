@@ -8,22 +8,21 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Redis;
-use Request;
-//use Illuminate\Support\Facades\Redis;
-use App\Http\Controllers\Api\BaseApiController;
 
+use Request;
+use App\Http\Controllers\Api\BaseApiController;
 
 
 class ClienterController extends BaseApiController
 {
     protected $user;
 
+
     public function __construct($user = null)
     {
 
-        //parent::__construct($user);
-        //$this->user = $this->UserIsLogin();
+        parent::__construct($user);
+        $this->user = $this->UserIsLogin();
     }
 
     /*
@@ -60,35 +59,15 @@ class ClienterController extends BaseApiController
 //            ]
         ];
 
-
-
-
-//        Redis::setFacadeApplication($data);
-//        $result= Redis::getFacadeApplication();
-
-//        foreach($result as $value){
-//            $result = $value;
-//        }
-        //Session('name',$result['name']);
-
     }
 
-    public function UserIsLogin(Request $request){
-        $userInfo = $request->session()->get();
-        dd($userInfo);die;
-    }
 
     public function redis(){
 
-        $redis = new \Redis();
-        //$connect = $redis->connect('127.0.0.1','6379');
-        $connect = Redis::connect('127.0.0.1','6379');
-        print_r($connect);die;
-        //$redis->set('name','1');
+        //$this->Redis->set('username','战神');
 
-        $result = $redis->get('name');
+        $result = $this->Redis->get('username');
         dd($result);
-
 
     }
 

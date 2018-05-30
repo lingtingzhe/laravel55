@@ -14,21 +14,30 @@ class BaseApiController extends Controller
     const TOKEN = 'API';
     protected $Http = 'http';
     protected $URL = 'laravel55.com/api/api2';
+    protected $Redis;
+    private $RedisConfig = [
+        'host' => '127.0.0.1',
+        'port' => '6379'
+    ];
+
 
     public function __construct($user = null)
     {
-        /*
-         * 此处判断 是否登陆
-         * 登陆生成新的token， 供后期使用
-         * 未登陆，则生成token 供接口调用
-         *      生成方式，存放时间，参数异常
-         */
-        if($user){
-            echo 'trues';
-        }else{
-            echo 'falses';
-        }
+        $this->Redis = new \Redis();
+        $this->Redis->connect($this->RedisConfig['host'],$this->RedisConfig['port']);
 
+    }
+    /*
+     *  判断用户是否登陆
+     */
+    public function UserIsLogin(){
+        $userInfo = $this->Redis->get('username');
+        if($userInfo){
+            $result = true;
+        }else{
+            $result = false;
+        }
+        return $result;
     }
 
     /*
