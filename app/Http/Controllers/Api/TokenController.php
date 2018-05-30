@@ -39,7 +39,7 @@ class TokenController extends BaseApiController
      */
     public function Valition()
     {
-        
+
     }
 
 }
