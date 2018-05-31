@@ -31,13 +31,13 @@ class BaseApiController extends Controller
     }
 
     /*
-     *  token 状态模版
+     *  json 返回状态模版
      */
-    public function apiTokenVerification($Msg = 'token empty'){
+    public function resultJsonStatus($code = 0, $Msg = 'token empty',$data = []){
         $data = [
-            'code' => 0,
+            'code' => $code,
             'msg' => $Msg,
-            'data' => []
+            'data' => $data
         ];
         return $data;
     }

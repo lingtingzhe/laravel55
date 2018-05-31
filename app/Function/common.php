@@ -163,11 +163,18 @@ if (!function_exists('laravelCurl')) {
 
         curl_close($curl);
 
+//        if ($is_json) {
+//            if ($json_deep) {
+//                $output = json_decode($output, true);
+//            } else {
+//                $output = json_decode($output);
+//            }
+//        }
         if ($is_json) {
             if ($json_deep) {
-                $output = json_decode($output, true);
+                $output = json_encode($output, true);
             } else {
-                $output = json_decode($output);
+                $output = json_encode($output);
             }
         }
 

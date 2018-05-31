@@ -29,7 +29,8 @@ class indexController extends BaseApiController
         $verificationMsg = $this->TokenController->Verification($tokenInfo);
         if($verificationMsg != 'successful'){
             //throw new Exception('请求异常');
-            return $this->apiTokenVerification('请求异常');
+            //return $this->resultJsonStatus(-1,'请求异常');
+            return response()->json('请求异常');
         }
 
         $data = [
@@ -49,9 +50,8 @@ class indexController extends BaseApiController
                 'phone' => '15113754378'
             ]
         ];
-        //return $data;
+        return response()->json($this->resultJsonStatus(200,'index_data',$data));
 
-        return response()->json($data);
 
     }
 }

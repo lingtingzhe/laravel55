@@ -88,7 +88,7 @@ Route::get('/redirect',function(){
  */
 Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
 
-    Route::get('register','RegisterController@register');
+
     Route::get('login','LoginController@login');
     Route::get('client','ClienterController@getDataFromServer');
 
@@ -99,8 +99,8 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
     Route::get('clienttoken','ClienterController@token');
 
     //请求首页数据
-    Route::any('index','ClienterController@index');
-
+    Route::get('index','ClienterController@index');
+    Route::get('clientregister','ClienterController@register');
 
 
     /*
@@ -108,6 +108,9 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
      */
     Route::get('token','TokenController@genToken');
     Route::get('serverIndex','indexController@index');
+
+    // 注册
+    Route::post('register','RegisterController@register');
 
     //sort
     Route::get('sort','RegisterController@sort');

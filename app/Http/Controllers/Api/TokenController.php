@@ -44,11 +44,11 @@ class TokenController extends BaseApiController
     public function Verification($token){
 
         if(empty($token) || !isset($token)){
-            return response()->json($this->apiTokenVerification());
+            return response()->json($this->resultJsonStatus());
         }
 
         if($token != $this->Redis->get($this->serverToken)){
-            return response()->json($this->apiTokenVerification('fail'));
+            return response()->json($this->resultJsonStatus(0,'fail'));
         }
 
         return 'successful';

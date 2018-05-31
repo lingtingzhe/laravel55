@@ -78,7 +78,22 @@ class ClienterController extends BaseApiController
         $indexInfo = laravelCurl($url);
         dd($indexInfo);
     }
-    
+
+    public function register(){
+
+        $data = [
+            'clientToken' => $this->Redis->get($this->clientToken),
+            'id' => '1',
+            'username' => 'huolian',
+            'password' => encrypt('123456'),
+            'alias' => '战神',
+        ];
+
+        $url = $this->URL.'/register';
+        $registerInfo = laravelCurl($url,$data);
+        dd($registerInfo);
+    }
+
 
 
 

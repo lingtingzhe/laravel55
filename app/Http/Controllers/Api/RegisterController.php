@@ -7,36 +7,21 @@
  */
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseApiController;
-use Illuminate\Support\Facades\Input;
-use Request;
+
 
 class RegisterController extends BaseApiController
 {
-    const TOKEN = 'API';
 
     public function register(Request $request){
 
-        //响应前台的请求
-        //验证身份
-        //return $_SERVER;die;
+        //return 'serverRegister';die;
+        $data = $request->input();
 
-        $timeStamp = Input::get('t') ? Input::get('t') : '1';
-        $randomStr = Input::get('r') ? Input::get('r') : '2';
-        $signature = Input::get('s') ? Input::get('s') : '3';
-        $str = $this->arithmetic($timeStamp,$randomStr);
+        $data = json_decode($data);
 
-        if($str != $signature){
-            echo "-1";
-            exit;
-        }
-
-        //模拟数据
-        $arr['name'] = 'api';
-        $arr['age'] = 15;
-        $arr['address'] = 'zz';
-        $arr['ip'] = "192.168.0.1";
-        echo json_encode($arr);
+        return $data;
 
     }
 
