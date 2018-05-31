@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\BaseApiController;
 class ClienterController extends BaseApiController
 {
     protected $user;
+    private $clientToken = 'clientToken';
 
 
     public function __construct($user = null)
@@ -38,37 +39,47 @@ class ClienterController extends BaseApiController
         //echo $signature;
         //url地址
         $url = $this->URL."/register?t={$timeStamp}&r={$randomStr}&s={$signature}";
-        dd($url);die;
+
         $result = laravelCurl($url);
         //打印返回数据
         dd($result);
     }
 
-    public function FacedeRedis(Request $request){
-        $data = [
-            'user1' => [
-                'id' => '1',
-                'name' => 'zhangsan',
-                'sex' => '0',
-                'age' => '19'
-            ],
-//            'user2' => [
-//                'name' => 'lisi',
-//                'age' => '1',
-//                'sex' => '20'
-//            ]
-        ];
+    /*
+     * 请求token 接口
+     */
+    public function token(){
+
+        $url = $this->URL.'/token';
+        $data = laravelCurl($url,null,1,1);
+
+        if(!empty($data['data'])){
+            /*
+             * 此处客户端，应使用 session 存储
+             */
+            $this->Redis->set($this->clientToken,$data['data']['md5Info']);
+            return $data;
+        }else{
+           $this->token();
+        }
 
     }
 
+    /*
+     * 模拟请求 后端首页数据
+     */
+    public function index(){
 
-    public function redis(){
+        /*
+         * 此处token 应在session 取出
+         */
+        $url = $this->URL.'/serverIndex?token='.$this->Redis->get($this->clientToken);
 
-        //$this->Redis->set('username','战神');
-
-        $result = $this->Redis->get('username');
-        dd($result);
-
+        $indexInfo = laravelCurl($url);
+        dd($indexInfo);
     }
+    
+
+
 
 }

@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\BaseApiController;
 class TokenController extends BaseApiController
 {
     protected $expireIn = 60;
-    private $TokenName = 'token';
+    private $serverToken = 'serverToken';
 
     public function genToken()
     {
@@ -22,23 +22,36 @@ class TokenController extends BaseApiController
         $md5Info = $this->arithmetic($timeStamp,$randomStr);
 
         $data = [
-            'timeStamp' => $timeStamp,
-            'randomNum' => $randomStr,
-            'md5Info' => $md5Info,
+            'code' => 200,
+            'msg' => 'apiToken',
+            'data' => [
+                'timeStamp' => $timeStamp,
+                'randomNum' => $randomStr,
+                'md5Info' => $md5Info,
+            ]
         ];
-        $date = $this->TokenName.'_'.date('Y-m-d-H-i-s',$data['timeStamp']);
-        $this->Redis->set($date,$data['md5Info'],$this->expireIn);
-        $this->date = $this->Redis->get($date);
+
+        $this->Redis->set($this->serverToken,$data['data']['md5Info']);
+       // $this->date = $this->Redis->get($date);
 
         $data = response()->json($data);
-        dd($data);
+        return $data;
     }
 
     /*
      * 验证token
      */
-    public function Valition()
-    {
+    public function Verification($token){
+
+        if(empty($token) || !isset($token)){
+            return response()->json($this->apiTokenVerification());
+        }
+
+        if($token != $this->Redis->get($this->serverToken)){
+            return response()->json($this->apiTokenVerification('fail'));
+        }
+
+        return 'successful';
 
     }
 

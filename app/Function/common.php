@@ -160,7 +160,7 @@ if (!function_exists('laravelCurl')) {
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         }
         $output = curl_exec($curl);
-//        var_dump($output);die;
+
         curl_close($curl);
 
         if ($is_json) {

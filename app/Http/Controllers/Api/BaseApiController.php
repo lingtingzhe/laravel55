@@ -8,11 +8,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\TokenController;
 
 class BaseApiController extends Controller
 {
+
     const TOKEN = 'API';
-    protected $Http = 'http';
+    protected $Http = 'http://';
     protected $URL = 'laravel55.com/api/api2';
     protected $Redis;
     private $RedisConfig = [
@@ -27,6 +29,19 @@ class BaseApiController extends Controller
         $this->Redis->connect($this->RedisConfig['host'],$this->RedisConfig['port']);
 
     }
+
+    /*
+     *  token 状态模版
+     */
+    public function apiTokenVerification($Msg = 'token empty'){
+        $data = [
+            'code' => 0,
+            'msg' => $Msg,
+            'data' => []
+        ];
+        return $data;
+    }
+
     /*
      *  判断用户是否登陆
      */

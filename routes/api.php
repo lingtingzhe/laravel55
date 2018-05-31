@@ -87,13 +87,27 @@ Route::get('/redirect',function(){
  * api 模拟登陆注册接口
  */
 Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
-    //Route::get('/','LoginController@login');
-    Route::get('token','TokenController@genToken');
-    Route::get('client','ClienterController@getDataFromServer');
 
     Route::get('register','RegisterController@register');
-
     Route::get('login','LoginController@login');
+    Route::get('client','ClienterController@getDataFromServer');
+
+    /*
+     * 客户端接口
+     */
+    //访问令牌
+    Route::get('clienttoken','ClienterController@token');
+
+    //请求首页数据
+    Route::any('index','ClienterController@index');
+
+
+
+    /*
+     * 后端
+     */
+    Route::get('token','TokenController@genToken');
+    Route::get('serverIndex','indexController@index');
 
     //sort
     Route::get('sort','RegisterController@sort');
