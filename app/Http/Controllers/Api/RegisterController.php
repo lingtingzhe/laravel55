@@ -9,20 +9,37 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseApiController;
-
+use App\Http\Controllers\Api\TokenController;
+use App\Models\RegisterModel;
 
 class RegisterController extends BaseApiController
 {
 
+    public function __construct($user = null)
+    {
+        //parent::__construct($user);
+        $this->RegisterModel = new RegisterModel();
+    }
+
     public function register(Request $request){
 
-        //return 'serverRegister';die;
-        $data = $request->input();
+        $Info['clientToken'] = $request->input('clientToken');
+        $Info['username'] = $request->input('username');
+        $Info['password'] = $request->input('password');
+        $Info['email'] = $request->input('email');
+        $this->TokenController = new TokenController();
+        $verification = $this->TokenController->Verification($Info['clientToken']);
 
-        $data = json_decode($data);
+        if($verification != 'successful'){
+            return $this->resultJsonStatus(0,'register_请求异常');
+        }
 
-        return $data;
+        $result =  $this->RegisterModel->saveInfo($Info);
+
+        return response()->json($this->resultJsonStatus(200,'successful',$result));
 
     }
+
+
 
 }

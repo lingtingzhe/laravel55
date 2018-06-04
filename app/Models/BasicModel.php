@@ -8,8 +8,9 @@ use Illuminate\Filesystem\Cache;
 class BasicModel extends Model
 {
     public function __construct(){
-    	#Code....
+
     }
+
 
 
 }

@@ -83,17 +83,30 @@ class ClienterController extends BaseApiController
 
         $data = [
             'clientToken' => $this->Redis->get($this->clientToken),
-            'id' => '1',
-            'username' => 'huolian',
+            'username' => '张三',
+            'email' => '1812135579@qq.com',
             'password' => encrypt('123456'),
-            'alias' => '战神',
         ];
 
         $url = $this->URL.'/register';
-        $registerInfo = laravelCurl($url,$data);
+        $registerInfo = laravelCurl($url,$data,1);
         dd($registerInfo);
     }
 
+    public function login(){
+
+        $data = [
+            'clientToken' => $this->Redis->get($this->clientToken),
+            'username' => '张三',
+            //'email' => '1812135579@qq.com',
+            'password' => encrypt('123456'),
+            //'password' => bcrypt('123456'),
+        ];
+        $url = $this->URL.'/login';
+        $registerInfo = laravelCurl($url,$data);
+        dd($registerInfo);
+
+    }
 
 
 

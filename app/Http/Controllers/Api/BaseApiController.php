@@ -17,6 +17,7 @@ class BaseApiController extends Controller
     protected $Http = 'http://';
     protected $URL = 'laravel55.com/api/api2';
     protected $Redis;
+    protected $TokenController;
     private $RedisConfig = [
         'host' => '127.0.0.1',
         'port' => '6379'

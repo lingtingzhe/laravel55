@@ -88,8 +88,10 @@ Route::get('/redirect',function(){
  */
 Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
 
+    Event::listen('illuminate.query', function($sql,$param) {
+        file_put_contents(public_path().'/sql.log',$sql.'['.print_r($param, 1).']'."\r\n",8);
+    });
 
-    Route::get('login','LoginController@login');
     Route::get('client','ClienterController@getDataFromServer');
 
     /*
@@ -101,6 +103,7 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
     //请求首页数据
     Route::get('index','ClienterController@index');
     Route::get('clientregister','ClienterController@register');
+    Route::get('clientlogin','ClienterController@login');
 
 
     /*
@@ -111,6 +114,9 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
 
     // 注册
     Route::post('register','RegisterController@register');
+    // 登陆
+    Route::post('login','LoginController@login');
+
 
     //sort
     Route::get('sort','RegisterController@sort');

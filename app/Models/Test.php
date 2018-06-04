@@ -10,7 +10,7 @@ class Test extends BasicModel
 {
 	use SoftDeletes;
 	 //使用软删除
-    	protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
 	protected $table = 'test';
 
