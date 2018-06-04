@@ -30,7 +30,7 @@ class LoginController extends Controller
 
         $verificationToken = $this->TokenController->Verification($info['clientToken']);
         if($verificationToken != 'successful'){
-            return $this->resultJsonStatus(0,'register_请求异常');
+            return $this->BaseApiController->resultJsonStatus(0,'register_请求异常');
         }
 
         $result =  $this->LoginModel->login($info);
@@ -39,7 +39,7 @@ class LoginController extends Controller
             $this->BaseApiController->resultJsonStatus(0,'Login--网络异常');
         }
         /*
-         * 重新生成token 加过期时间，存储方式，生成方法
+         * 重新生成token 过期时间，存储方式，生成方法
          */
 
         $result = $this->TokenController->genToken($result,1);
