@@ -25,9 +25,10 @@ class CommentController extends BaseApiController
 
        $resonse = $request->input();
       // return $resonse;
-        return $resonse;
         $this->TokenController->Verification($resonse['clientToken'],$resonse['loginToken']);
-       $this->CommentModel->comment($resonse);
+        //入库
+       $result = $this->CommentModel->comment($resonse);
+       return $result;
     }
 
 }

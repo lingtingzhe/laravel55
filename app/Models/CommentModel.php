@@ -10,9 +10,10 @@ namespace App\Models;
 
 use App\Models\BasicModel;
 
+
 class CommentModel extends BasicModel
 {
-    public function comment(){
-
+    public function comment($comment= []){
+        return $comment;
     }
 }
