@@ -17,7 +17,7 @@ class ClienterController extends BaseApiController
 {
     protected $user;
     private $clientToken = 'clientToken';
-
+    private $loginToken = 'clientLoginToken_38';
 
     public function __construct($user = null)
     {
@@ -106,6 +106,20 @@ class ClienterController extends BaseApiController
         $registerInfo = laravelCurl($url,$data);
         dd($registerInfo);
 
+    }
+
+    public function comment(){
+
+        $data = [
+            'clientToken' => $this->Redis->get($this->clientToken),
+            'loginToken' => $this->Redis->get($this->loginToken),
+            'id' => $this->Redis->get('clientLoginId'),
+            'content' => 'please speack chinese'
+        ];
+        //return $data;
+        $url = $this->URL.'/comment';
+        $registerInfo = laravelCurl($url,$data);
+        dd($registerInfo);
     }
 
 

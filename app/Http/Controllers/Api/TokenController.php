@@ -54,8 +54,10 @@ class TokenController extends BaseApiController
                 ]
             ];
 
-            $index = 'clientLoginId_'.$result['id'];
+            $index = 'clientLoginToken_'.$result['id'];
             $this->Redis->set($index,$data['data']['md5Info'],$this->expireIn);
+            $this->Redis->set('clientLoginId',$data['data']['id'],$this->expireIn);
+
         }
 
         $data = response()->json($data);
@@ -65,7 +67,7 @@ class TokenController extends BaseApiController
     /*
      * 验证token
      */
-    public function Verification($token){
+    public function Verification($token,$loginToken = []){
 
         if(empty($token) || !isset($token)){
             return response()->json($this->resultJsonStatus());
@@ -73,6 +75,14 @@ class TokenController extends BaseApiController
 
         if($token != $this->Redis->get($this->serverToken)){
             return response()->json($this->resultJsonStatus(0,'token check fail'));
+        }
+
+        if(!isset($loginToken) && $this->Redis->get('clientLoginToken') != $loginToken || $loginToken == null){
+            return response()->json($this->resultJsonStatus(0,'clientLoginToken check fail'));
+        }else{
+//            $this->Redis->set('clientLoginToken_'.$this->Redis->get('clientLoginId'),$this->genToken(),$this->expireIn);
+//            $this->Redis->set($this->Redis->get('clientLoginId'),$this->expireIn);
+            return redirect('/login');
         }
 
         return 'successful';

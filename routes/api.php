@@ -104,7 +104,10 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
     Route::get('index','ClienterController@index');
     Route::get('clientregister','ClienterController@register');
     Route::get('clientlogin','ClienterController@login');
-
+    /*
+     * 登陆评论
+     */
+    Route::get('clientcomment','ClienterController@comment');
 
     /*
      * 后端
@@ -116,6 +119,8 @@ Route::group(['prefix'=>'api2','namespace'=>'Api'],function(){
     Route::post('register','RegisterController@register');
     // 登陆
     Route::post('login','LoginController@login');
+    /* 评论 */
+    Route::post('comment','CommentController@comment');
 
 
     //sort

@@ -12,7 +12,6 @@ use App\Http\Controllers\Api\TokenController;
 
 class BaseApiController extends Controller
 {
-
     const TOKEN = 'API';
     protected $Http = 'http://';
     protected $URL = 'laravel55.com/api/api2';
@@ -47,7 +46,7 @@ class BaseApiController extends Controller
      *  判断用户是否登陆
      */
     public function UserIsLogin(){
-        $userInfo = $this->Redis->get('username');
+        $userInfo = $this->Redis->get('clientLoginId');
         if($userInfo){
             $result = true;
         }else{
