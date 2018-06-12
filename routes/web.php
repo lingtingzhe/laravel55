@@ -59,6 +59,21 @@ Route::group(['prefix'=>'/','namespace'=>'Home','middleware'=>['web']],function(
         dd($data);die;
     });
 
+    /*
+     * 软删除 学习
+     */
+    Route::get('softdelete','TestController@softDelete');
+    Route::get('self','TestController@self');
+    Route::get('list','TestController@getListData');
+    Route::get('reject','TestController@reject');
+    Route::get('chunk','TestController@chunk');
+    Route::get('findOrFail','TestController@findOrFail');
+    Route::get('countAndmax','TestController@countAndmax');
+    Route::get('createds','TestController@createds');
+    Route::get('del','TestController@del');
+    Route::get('destroy','TestController@destroys');
+    Route::get('withTrashed','TestController@trashedsWith');
+
     /*  下面代码测试使用 暂时不需要 */
     Route::get("/base/","TestController@base");
     Route::get("/config","TestController@config");

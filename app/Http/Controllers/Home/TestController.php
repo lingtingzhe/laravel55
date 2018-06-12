@@ -9,8 +9,14 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Test;
 
-class TestController extends Controller {
+class TestController extends Controller
+{
+    public function __construct()
+    {
+        $this->TestModel = new Test();
+    }
 
     public function index(){
         $name = 'fanzhiqiang';
@@ -41,6 +47,71 @@ class TestController extends Controller {
         return view("article/common/section");
     }
 
+    public function softDelete()
+    {
+       $result = $this->TestModel->DeleteData();
+       dd($result);
+    }
+    public function self()
+    {
+        $result = $this->TestModel->self();
+        dd($result);
+    }
+    public function getListData()
+    {
+        $result = $this->TestModel->getDataList();
+        dd($result);
+    }
+
+    public function reject()
+    {
+        $result = $this->TestModel->reject();
+        dd($result);
+    }
+
+    public function chunk()
+    {
+        $result = $this->TestModel->chunks();
+        dd($result);
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->TestModel->findOrFails();
+        dd($result);
+    }
+
+    public function countAndmax()
+    {
+        $result = $this->TestModel->countAndmaxs();
+        dd($result);
+    }
+
+    public function createds()
+    {
+        $result = $this->TestModel->createds();
+        dd($result);
+    }
+
+    public function del()
+    {
+        $result = $this->TestModel->del();
+        dd($result);
+    }
+
+    public function destroys()
+    {
+        $result = $this->TestModel->destroys();
+        dd($result);
+    }
+
+    public function trashedsWith()
+    {
+        //TestModel  是上面use的model的名字
+        $result = Test::trashedsWith();
+        dd($result);
+
+    }
 
 
 

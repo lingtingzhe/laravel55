@@ -37,6 +37,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\BasicModel' => $baseDir . '/app/Models/BasicModel.php',
+    'App\\Models\\CommentModel' => $baseDir . '/app/Models/CommentModel.php',
     'App\\Models\\LoginModel' => $baseDir . '/app/Models/LoginModel.php',
     'App\\Models\\RegisterModel' => $baseDir . '/app/Models/RegisterModel.php',
     'App\\Models\\Test' => $baseDir . '/app/Models/Test.php',
