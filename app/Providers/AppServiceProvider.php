@@ -19,11 +19,11 @@ class AppServiceProvider extends ServiceProvider
          *  启动应用服务
          */
 
-        //DB::listen(function ($query){
-            //$query->sql;
-            //$query->bindings
-            //$query->time
-       // });
+//        DB::listen(function ($query){
+//            $query->sql
+//            $query->bindings
+//            $query->time
+//        });
 
     }
 
