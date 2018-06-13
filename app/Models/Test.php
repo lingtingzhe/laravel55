@@ -2,9 +2,8 @@
 namespace App\Models;
 
 use App\Models\BasicModel;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use League\Flysystem\Exception;
 
 class Test extends BasicModel
 {
@@ -123,16 +122,22 @@ class Test extends BasicModel
         return Test::destroy(10);
     }
 
-    public static function trashedsWith()
+    public function trashedsWith()
     {
-        $flights = Test::withTrashed()
-            ->where('id', 10)
-            ->get();
-        return $flights;
+//        $info = self::withTrashed()->whereId(8)->first();
+        $info = self::withTrashed()->where('deleted_at','==','null')->get();
+        $info = $info->history()->withTrashed()->get();
+        return $info;
     }
 
+    public function restores($id = 12)
+    {
+       // $info = self::find($id);
 
+        $info = self::restore($id);
+        return $info;
 
+    }
 
 
 }

@@ -73,6 +73,7 @@ Route::group(['prefix'=>'/','namespace'=>'Home','middleware'=>['web']],function(
     Route::get('del','TestController@del');
     Route::get('destroy','TestController@destroys');
     Route::get('withTrashed','TestController@trashedsWith');
+    Route::get('restores','TestController@restores');
 
     /*  下面代码测试使用 暂时不需要 */
     Route::get("/base/","TestController@base");

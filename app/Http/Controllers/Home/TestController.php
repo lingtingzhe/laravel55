@@ -13,6 +13,7 @@ use App\Models\Test;
 
 class TestController extends Controller
 {
+
     public function __construct()
     {
         $this->TestModel = new Test();
@@ -107,10 +108,14 @@ class TestController extends Controller
 
     public function trashedsWith()
     {
-        //TestModel  是上面use的model的名字
-        $result = Test::trashedsWith();
+        $result = $this->TestModel->trashedsWith();
         dd($result);
+    }
 
+    public function restores()
+    {
+        $result = $this->TestModel->restores();
+        dd($result);
     }
 
 
