@@ -38,9 +38,11 @@ class Test extends BasicModel
 		}
 		return $info->delete();
 	}
-	public function DeleteData()
-    {
 
+	public function DeleteData($id)
+    {
+        $info =  self::find($id);
+        return $info->delete($id);
     }
 
     public function self()
@@ -109,32 +111,36 @@ class Test extends BasicModel
        // return $flight->fill(['name' => 'Flight 22']);
     }
 
-    public function del()
+    public function del($id)
     {
-        $flight = Test::find(8);
+        $flight = self::find($id);
 	    $result = $flight->delete();
 	    return $result;
     }
 
-    public function destroys()
+    public function destroys($id)
     {
 
-        return Test::destroy(10);
+        return Test::destroy($id);
     }
 
     public function trashedsWith()
     {
-//        $info = self::withTrashed()->whereId(8)->first();
-        $info = self::withTrashed()->where('deleted_at','==','null')->get();
-        $info = $info->history()->withTrashed()->get();
+        //$info = self::withTrashed()->whereId(2)->first();
+
+        //onlyTrashed 方法只会取出被软删除的模型：
+        //$info = self::onlyTrashed()->where('deleted_at','!=',null)->get();
+
+        $info = self::withTrashed()->where('deleted_at','=',null)->get();
+
+       // $info = $info->history()->get();
         return $info;
     }
 
-    public function restores($id = 12)
+    public function restores($id)
     {
-       // $info = self::find($id);
-
-        $info = self::restore($id);
+        $info = self::withTrashed()->whereId($id)->first();
+        $info = $info->restore();
         return $info;
 
     }

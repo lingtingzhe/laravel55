@@ -51,6 +51,8 @@ Route::post('articles','ArticleController@store');
 Route::put('articles{id}','ArticleController@update');
 Route::delete('articles/{id}','ArticleController@delete');
 */
+//headless CMS
+Route::get('headless','Api\HeadlessController@index');
 
 Route::get('/','IndexController@index');
 Route::post('register','Auth\RegisterController@register');

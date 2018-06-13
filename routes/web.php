@@ -62,7 +62,7 @@ Route::group(['prefix'=>'/','namespace'=>'Home','middleware'=>['web']],function(
     /*
      * 软删除 学习
      */
-    Route::get('softdelete','TestController@softDelete');
+    Route::get('softdelete/{id}','TestController@softDelete');
     Route::get('self','TestController@self');
     Route::get('list','TestController@getListData');
     Route::get('reject','TestController@reject');
@@ -70,10 +70,10 @@ Route::group(['prefix'=>'/','namespace'=>'Home','middleware'=>['web']],function(
     Route::get('findOrFail','TestController@findOrFail');
     Route::get('countAndmax','TestController@countAndmax');
     Route::get('createds','TestController@createds');
-    Route::get('del','TestController@del');
-    Route::get('destroy','TestController@destroys');
-    Route::get('withTrashed','TestController@trashedsWith');
-    Route::get('restores','TestController@restores');
+    Route::get('del/{$id}','TestController@del');
+    Route::get('destroy/{id}','TestController@destroys');
+    Route::get('trashedsWith','TestController@trashedsWith');
+    Route::get('restores/{id}','TestController@restores');
 
     /*  下面代码测试使用 暂时不需要 */
     Route::get("/base/","TestController@base");

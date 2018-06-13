@@ -48,9 +48,9 @@ class TestController extends Controller
         return view("article/common/section");
     }
 
-    public function softDelete()
+    public function softDelete($id)
     {
-       $result = $this->TestModel->DeleteData();
+       $result = $this->TestModel->DeleteData($id);
        dd($result);
     }
     public function self()
@@ -94,15 +94,15 @@ class TestController extends Controller
         dd($result);
     }
 
-    public function del()
+    public function del($id)
     {
-        $result = $this->TestModel->del();
+        $result = $this->TestModel->del($id);
         dd($result);
     }
 
-    public function destroys()
+    public function destroys($id)
     {
-        $result = $this->TestModel->destroys();
+        $result = $this->TestModel->destroys($id);
         dd($result);
     }
 
@@ -112,9 +112,9 @@ class TestController extends Controller
         dd($result);
     }
 
-    public function restores()
+    public function restores($id)
     {
-        $result = $this->TestModel->restores();
+        $result = $this->TestModel->restores($id);
         dd($result);
     }
 
