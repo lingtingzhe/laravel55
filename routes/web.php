@@ -74,6 +74,18 @@ Route::group(['prefix'=>'/','namespace'=>'Home','middleware'=>['web']],function(
     Route::get('destroy/{id}','TestController@destroys');
     Route::get('trashedsWith','TestController@trashedsWith');
     Route::get('restores/{id}','TestController@restores');
+    /*
+     * 检查数据表或字段是否存在
+     * 可以使用 hasTable 和 hasColumn 方法来检查数据表或字段是否存在：
+     */
+    Route::get('hasColumn','TestController@hasColumn');
+
+    /*
+     * 模型关联管理
+     */
+    Route::get('hasOne','EloquentController@index');
+
+
 
     /*  下面代码测试使用 暂时不需要 */
     Route::get("/base/","TestController@base");

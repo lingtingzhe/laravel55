@@ -417,6 +417,7 @@ class ComposerStaticInitedd0134ac07fcff9710106d411651c50
         'App\\Http\\Controllers\\Api\\BaseApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BaseApiController.php',
         'App\\Http\\Controllers\\Api\\ClienterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ClienterController.php',
         'App\\Http\\Controllers\\Api\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/CommentController.php',
+        'App\\Http\\Controllers\\Api\\HeadlessController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/HeadlessController.php',
         'App\\Http\\Controllers\\Api\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/LoginController.php',
         'App\\Http\\Controllers\\Api\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/RegisterController.php',
         'App\\Http\\Controllers\\Api\\TokenController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/TokenController.php',

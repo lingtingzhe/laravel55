@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use App\Models\BasicModel;
-//use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends BasicModel
@@ -142,8 +142,28 @@ class Test extends BasicModel
         $info = self::withTrashed()->whereId($id)->first();
         $info = $info->restore();
         return $info;
-
     }
+
+    /*
+     * 检查数据表或字段是否存在
+     * 可以使用 hasTable 和 hasColumn 方法来检查数据表或字段是否存在：
+     */
+    public function hasColumns()
+    {
+        dd(Schema::hasColumn('test','id'));
+        dd(Schema::hasTable('_tests'));
+    }
+
+    /*
+     * 如果要对非默认连接的数据库连接执行结构操作，可以使用 connection 方法：
+     */
+    public function falseConnection()
+    {
+        Schema::connection('foo')->create('users', function (Blueprint $table) {
+            $table->increments('id');
+        });
+    }
+
 
 
 }

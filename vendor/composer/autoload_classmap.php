@@ -14,6 +14,7 @@ return array(
     'App\\Http\\Controllers\\Api\\BaseApiController' => $baseDir . '/app/Http/Controllers/Api/BaseApiController.php',
     'App\\Http\\Controllers\\Api\\ClienterController' => $baseDir . '/app/Http/Controllers/Api/ClienterController.php',
     'App\\Http\\Controllers\\Api\\CommentController' => $baseDir . '/app/Http/Controllers/Api/CommentController.php',
+    'App\\Http\\Controllers\\Api\\HeadlessController' => $baseDir . '/app/Http/Controllers/Api/HeadlessController.php',
     'App\\Http\\Controllers\\Api\\LoginController' => $baseDir . '/app/Http/Controllers/Api/LoginController.php',
     'App\\Http\\Controllers\\Api\\RegisterController' => $baseDir . '/app/Http/Controllers/Api/RegisterController.php',
     'App\\Http\\Controllers\\Api\\TokenController' => $baseDir . '/app/Http/Controllers/Api/TokenController.php',

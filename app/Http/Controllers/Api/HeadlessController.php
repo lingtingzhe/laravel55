@@ -9,15 +9,14 @@
 namespace App\Http\Controllers\Api;
 
 use ButterCMS\ButterCMS;
-//use ButterCMS;
 
 class HeadlessController
 {
-    protected $apiToken = 'your_api_token';
+    protected $apiToken = '123456';
 
     public function index()
     {
-        $butterCms = new ButterCMS('<auth_token>');
+        $butterCms = new ButterCMS($this->apiToken);
 
         $page = $butterCms->fetchPage('about', 'welcome-to-the-site');
 

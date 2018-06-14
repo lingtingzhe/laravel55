@@ -118,6 +118,11 @@ class TestController extends Controller
         dd($result);
     }
 
+    public function hasColumn()
+    {
+        $result = $this->TestModel->hasColumns();
+        return $result;
+    }
 
 
 }
